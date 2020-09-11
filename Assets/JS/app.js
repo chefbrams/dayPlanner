@@ -14,8 +14,21 @@ $(".btn").on("click", function (event) {
     }
     tasks.push(taskObj)
 
+
     localStorage.setItem("tasks", JSON.stringify(tasks))
 });
+
+$("#button").on("click", function (event) {
+    localStorage.clear();
+    location.reload();
+
+});
+
+
+
+
+
+
 
 
 //function to take tasks from local storage and update DOM

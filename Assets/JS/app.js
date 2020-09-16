@@ -1,20 +1,23 @@
-$(document).ready(function () {// essentially tells engine to load 1)html & 2)css first.
-    //display current day & time.
+
+$(document).ready(function () {
+
+
+
+    //shows current day in jumbotron
     $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"));
 
 
 
-    //Assign saveBtn click listener for user input and time stamp??
+    //event listner to retrieve values
     $(".saveBtn").on("click", function () {
-        //get nearby values.
-        console.log(this);
-        var text = $(this).siblings(".description").val();
-        var time = $(this).parent().attr("id");
 
-        //set items in local storage.
-        localStorage.setItem(time, text);
+        var currentTask = $(this).siblings(".description").val();
+        var currentHour = $(this).parent().attr("id");
+
+        //sets items in local storage.
+        localStorage.setItem(currentHour, currentTask);
     })
-    //load any saved data from LocalStorage - do this for each hour created.
+    //retrieves values from localstorage
     $("#block9 .description").val(localStorage.getItem("block9"));
     $("#block10 .description").val(localStorage.getItem("block10"));
     $("#block11 .description").val(localStorage.getItem("block11"));
@@ -25,11 +28,13 @@ $(document).ready(function () {// essentially tells engine to load 1)html & 2)cs
     $("#block16 .description").val(localStorage.getItem("block16"));
     $("#block17 .description").val(localStorage.getItem("block17"));
 })
+
+// Clears textarea and local storage
 $("#clearBtn").on("click", function () {
     localStorage.clear();
     location.reload()
 });
-
+// color codes textareas 
 var currentTime = new Date().getHours();
 if (currentTime > 9) {
     $("#event1").addClass("past");
